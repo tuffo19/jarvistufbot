@@ -1,15 +1,26 @@
 import { type Context, Telegraf } from 'telegraf';
 import { env } from '../env_setup/setup.js';
-import { clear } from 'console';
+import { tuffoCommands } from './commands.js'
+//import { clear } from 'console';
 
 type MyContext = Context;
 
-
 const bot = new Telegraf(env.NOTIFICATIONS_TELEGRAM_BOT_TOKEN);
 
-bot.start((context) => {
+async function setCommands() {
+    try {
+      await bot.telegram.setMyCommands(tuffoCommands, { scope: { type: 'default' } });
+      console.log('Comandi impostati con successo!');
+    } catch (error) {
+      console.error("Errore nell'impostare i comandi:", error);
+    }
+  }
+  
+setCommands();
+
+bot.start((ctx) => {
 	console.log('Servizio attivato...')
-	context.reply('Bot JarvisTufBot attivato')
+	ctx.reply('Bot JarvisTufBot attivato')
 })
 
 /* bot.on("text", (ctx) => {
