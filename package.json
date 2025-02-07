@@ -1,16 +1,18 @@
 {
   "name": "jarvistufbot",
-  "version": "1.0.0",
-  "description": "my first telegram bot",
-  "main": "index.js",
+  "version": "1.0.1",
+  "description": "My first telegram bot",
+  "exports": "./dist/src/main.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node-dev src/main.ts"
+    "start": "node ./dist/src/main.js",
+    "build": "tsc",
+    "dev": "nodemon",
+    "lint": "eslint"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
     "telegraf": "^4.16.3",
     "zod": "^3.24.1"
