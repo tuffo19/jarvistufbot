@@ -34,7 +34,7 @@ bot.start(async (ctx) => {
     await setData('chatsId', chatsId);
     const msg = ctx.message;
     console.log('Servizio di notifica attivato per utente '+msg.from.first_name+', chat_id: '+chatsId);
-    ctx.reply("Ciao "+msg.from.first_name+", bot JarvisTufBot abilitato a inviare notifichenpm install -g forever. Per fermarlo lancia comando /stop");
+    ctx.reply("Ciao "+msg.from.first_name+", bot JarvisTufBot abilitato a inviare notifiche. Per fermarlo lancia comando /stop");
   }
 })
 
