@@ -6,9 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node ./dist/src/main.js",
-    "build": "tsc",
-    "dev": "nodemon",
-    "lint": "eslint"
+    "start_forever": "forever start ./dist/src/main.js",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",

@@ -1,4 +1,5 @@
-import { type Context, Telegraf } from 'telegraf';
+import { Context, Telegraf } from 'telegraf';
+import { getData, setData } from './data.js';
 import { env } from '../env_setup/setup.js';
 import { tuffoCommands } from './commands.js'
 //import { clear } from 'console';
@@ -6,6 +7,9 @@ import { tuffoCommands } from './commands.js'
 type MyContext = Context;
 
 const bot = new Telegraf(env.NOTIFICATIONS_TELEGRAM_BOT_TOKEN);
+let chatsId: number[] = [];
+
+chatsId = (await getData('chatsId')) ?? [];
 
 async function setCommands() {
     try {
@@ -18,22 +22,22 @@ async function setCommands() {
   
 setCommands();
 
-bot.start((ctx) => {
-	console.log('Servizio attivato...')
-	ctx.reply('Bot JarvisTufBot attivato')
-})
+bot.start(async (ctx) => {
+  if (ctx.from?.id && !chatsId.includes(ctx.from?.id)) {
+    chatsId.push(ctx.from?.id);
 
-/* bot.on("text", (ctx) => {
+    console.log('--------------------');
+    console.log(
+      `New user: ${ctx.from?.first_name} ${ctx.from?.last_name ?? ''}`
+    );
+
+    await setData('chatsId', chatsId);
     const msg = ctx.message;
-    ctx.reply("Ciao "+msg.from.first_name+", sono un bot un po' meno stupido!");
-    ctx.reply("Ho ricevuto questo: "+msg.text);
-    console.log("Messaggio ricevuto: "+msg.text);
-  console.log('--------------------');
-  }); */
-
-bot.hears('ciao', message=> {
-	message.reply('Ci ha salutato')
+    console.log('Servizio di notifica attivato per utente '+msg.from.first_name+', chat_id: '+chatsId);
+    ctx.reply("Ciao "+msg.from.first_name+", bot JarvisTufBot abilitato a inviare notifiche. Per fermarlo lancia comando /stop");
+  }
 })
+
 
 bot.command('posautogek', ctx=> {
     ctx.reply("Ho ricevuto questo: ");
@@ -47,6 +51,24 @@ bot.command('posautofla', ctx=> {
   console.log('--------------------');
 })
 
+bot.command('stop', ctx=> {
+  //cancellare la chat_id e avvisare il cliente
+})
+
+
+
 bot.launch();
 console.log('Bot JarvisTufBot avviato');
 console.log('--------------------');
+
+//avviso tutte le chatId connesse
+for (const chatId of chatsId) {
+  void bot.telegram.sendMessage(chatId,`Bot JarvisTufBot avviato`,
+    {
+    parse_mode: 'HTML',
+    }
+  )
+  .catch((error) => {
+    console.error(error);
+  });
+}

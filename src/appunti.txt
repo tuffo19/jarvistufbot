@@ -1,0 +1,46 @@
+bot.on("text", (ctx) => {
+    const msg = ctx.message;
+    ctx.reply("Ciao "+msg.from.first_name+", sono un bot un po' meno stupido!");
+    ctx.reply("Ho ricevuto questo: "+msg.text);
+    console.log("Messaggio ricevuto: "+msg.text);
+  console.log('--------------------');
+  });
+
+  bot.hears('ciao', message=> {
+	message.reply('Ci ha salutato')
+})
+
+
+
+
+
+
+
+come installare
+  mkdir jarvistufbot
+  cd jarvistufbot/
+
+  npm init -y
+  npm install typescript -g
+  tsc --init
+  npm i telegraf
+  npm i -D ts-node-dev
+  npm install "dotenv"
+  
+  mkdir src
+  cd src
+
+  cp .env_template .env
+  
+  npm run start
+  git pull
+  npm run start
+  tsc
+  git status
+  cat env_setup/setup.js 
+
+  npm run build && npm run start
+  git pull
+  npm install -g forever
+  vi .env.local 
+ 1npm run build && npm run start
