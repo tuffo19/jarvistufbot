@@ -64,7 +64,7 @@ console.log('--------------------');
 //avviso tutte le chatId connesse
 for (const chatId of chatsId) {
   console.log("Sending launch message to chatId:"+chatId)
-  void bot.telegram.sendMessage(chatId,`💥Bot JarvisTufBot avviato💥.\nDa questo momento le notifiche sono attive.`,
+  void bot.telegram.sendMessage(chatId,`💥Bot JarvisTufBot avviato💥.\n<i>Da questo momento le notifiche sono attive.</i>`,
     {
     parse_mode: 'HTML',
     }
