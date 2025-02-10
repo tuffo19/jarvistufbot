@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 3
+    },
+    "auditLog": "/Users/giacomino/workspace/jarvistufbot/logs/.5634fe008093e77fb54d491362ebcb8ad6e32f1d-audit.json",
+    "files": [
+        {
+            "date": 1739148690895,
+            "name": "/Users/giacomino/workspace/jarvistufbot/logs/error-2025-02-10.log",
+            "hash": "56ccd103a15f0c9fd5ba86fcd9be69c81d46a8ff5b5f037eec822b0088b1b1d3"
+        }
+    ],
+    "hashType": "sha256"
+}
