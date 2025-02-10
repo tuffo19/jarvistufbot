@@ -38,6 +38,10 @@ bot.start(async (ctx) => {
   }
 })
 
+bot.help((ctx) => {
+  ctx.reply('Io sono JarvisTufBot, un agente AI che ti permette di inviare richieste e ricevere notifiche da Tuffo in persona.')
+})
+
 
 bot.command('posautogek', ctx=> {
     ctx.reply("Ho ricevuto questo: ");
@@ -73,3 +77,8 @@ for (const chatId of chatsId) {
     console.error(error);
   });
 }
+
+
+// Enable graceful stop
+process.once('SIGINT', () => bot.stop('SIGINT'))
+process.once('SIGTERM', () => bot.stop('SIGTERM'))
