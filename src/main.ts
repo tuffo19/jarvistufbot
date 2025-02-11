@@ -3,6 +3,7 @@ import { getData, setData } from './data.js';
 import { env } from '../env_setup/setup.js';
 import { tuffoCommands } from './commands.js'
 import { logHelper } from './logger.js';
+import { CarPositionRequest } from '../env_setup/types.js';
 
 type MyContext = Context;
 
@@ -33,7 +34,7 @@ bot.start(async (ctx) => {
 
     await setData('chatsId', chatsId);
     const msg = ctx.message;
-    logHelper.info('Servizio di notifica attivato per utente '+msg.from.first_name+', chat_id: '+chatsId);
+    logHelper.info('Servizio di notifica attivato per utente '+msg.from.first_name+', chat_id: '+ctx.from?.id);
     ctx.reply("Ciao "+msg.from.first_name+", bot JarvisTufBot abilitato a inviare notifiche. Per fermarlo lancia comando /stop");
   }
 })
@@ -59,15 +60,14 @@ bot.command('stop', ctx=> {
   //cancellare la chat_id e avvisare il cliente
 })
 
-
-
 bot.launch();
 logHelper.info('Bot JarvisTufBot avviato');
 logHelper.info('--------------------');
 
 //avviso tutte le chatId connesse
+logHelper.info("List of chatsId: {"+chatsId+"}");
 for (const chatId of chatsId) {
-  logHelper.info("Sending launch message to chatId:"+chatId)
+  logHelper.info("Sending launch message to chatId: "+chatId)
   void bot.telegram.sendMessage(chatId,`💥Bot JarvisTufBot avviato💥.\n<i>Da questo momento le notifiche sono attive.</i>`,
     {
     parse_mode: 'HTML',

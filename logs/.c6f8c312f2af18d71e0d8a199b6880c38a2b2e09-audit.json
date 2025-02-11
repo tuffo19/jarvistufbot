@@ -9,6 +9,11 @@
             "date": 1739148690897,
             "name": "/Users/giacomino/workspace/jarvistufbot/logs/application-2025-02-10.log",
             "hash": "08902ec8573b1cfc69c74c8d8c503f24bc5c403b060ba9f761f48166ce5304ed"
+        },
+        {
+            "date": 1739228514327,
+            "name": "/Users/giacomino/workspace/jarvistufbot/logs/application-2025-02-11.log",
+            "hash": "795e28dad9dec2eb6e54eada7a803fa15f9d5f39363f833363b12b0602d01c64"
         }
     ],
     "hashType": "sha256"
